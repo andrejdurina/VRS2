@@ -13,6 +13,9 @@
  * 		Your task is to provide their actual implementation so you can use them in application in "main.c"
  * 		and make your "LED blink" application code readable and great again!
  */
+enum EDGE_TYPE{none=0,rise=1,fall=2};
+
+enum EDGE_TYPE edgeDetect(uint8_t pin_state, uint8_t samples);
 
 //GPIOA peripheral base address
 #define	GPIOA_BASE_ADDR			(uint32_t)(0x48000000U)
