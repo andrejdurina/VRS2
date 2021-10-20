@@ -27,6 +27,8 @@
 int main(void)
 {
 
+	 enum EDGE_TYPE edge;
+
   //Systick init
   LL_Init1msTick(8000000);
   LL_SYSTICK_SetClkSource(LL_SYSTICK_CLKSOURCE_HCLK);
@@ -74,6 +76,12 @@ void Error_Handler(void)
   /* User can add his own implementation to report the HAL error return state */
 
   /* USER CODE END Error_Handler_Debug */
+}
+
+enum EDGE_TYPE edgeDetect(uint8_t pin_state, uint8_t samples)
+{
+	int dt = 250;
+	return null;
 }
 
 #ifdef  USE_FULL_ASSERT
