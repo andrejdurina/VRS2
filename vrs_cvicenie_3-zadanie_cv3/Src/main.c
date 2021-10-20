@@ -26,7 +26,7 @@
 
 int main(void)
 {
-
+	 int prev_input = 0;
 	 enum EDGE_TYPE edge;
 
   //Systick init
@@ -62,7 +62,11 @@ int main(void)
 
   while (1)
   {
-
+	  prev_input = BUTTON_GET_STATE;
+	  edge = edgeDetect(prev_input,5);
+	  if (edge == rise)
+		  /*TO-DO*/
+		  LED_ON;
   }
 }
 
