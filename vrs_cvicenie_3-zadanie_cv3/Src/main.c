@@ -27,6 +27,7 @@
 int main(void)
 {
 	 int prev_input = 0;
+         int led_state=0;
 	 enum EDGE_TYPE edge;
 
   //Systick init
@@ -62,11 +63,14 @@ int main(void)
 
   while (1)
   {
-	  prev_input = BUTTON_GET_STATE;
 	  edge = edgeDetect(prev_input,5);
+	  prev_input = BUTTON_GET_STATE;
 	  if (edge == rise)
-		  /*TO-DO*/
+		  led_state = ~led_state;
+	  if (led_state)
 		  LED_ON;
+	  else
+		  LED_OFF;
   }
 }
 
@@ -85,7 +89,35 @@ void Error_Handler(void)
 enum EDGE_TYPE edgeDetect(uint8_t pin_state, uint8_t samples)
 {
 	int dt = 250;
-	return null;
+
+	if(~pin_state && ~BUTTON_GET_STATE)
+	{
+		for (int i = 0 ; i < samples ; i ++)
+		{
+			if(BUTTON_GET_STATE)
+			{
+				return none;
+				break;
+			}
+				LL_mDelay(dt);
+		}
+		return rise;
+	}
+	else if (pin_state && BUTTON_GET_STATE )
+	{
+				for (int i = 0 ; i < samples ; i ++)
+				{
+					if(~BUTTON_GET_STATE)
+					{
+						return none;
+						break;
+					}
+						LL_mDelay(dt);
+				}
+				return fall;
+	}
+	else
+	return none;
 }
 
 #ifdef  USE_FULL_ASSERT
